@@ -1,0 +1,51 @@
+merchant_id,merchant_name,merchant_category,country_code
+MERCH-0001,Blair-Miller,electronics,CA
+MERCH-0002,Stevens-Martin,fuel,US
+MERCH-0003,Lee-Williams,restaurant,CA
+MERCH-0004,"Patterson, Mccoy and Moore",fashion,US
+MERCH-0005,Ayers PLC,restaurant,GB
+MERCH-0006,Jackson and Sons,electronics,GB
+MERCH-0007,Huffman Inc,restaurant,CA
+MERCH-0008,"Ward, Ray and Pittman",electronics,GB
+MERCH-0009,Hamilton-Conrad,fuel,CA
+MERCH-0010,"Rocha, Henson and Perry",restaurant,US
+MERCH-0011,Pena Ltd,travel,GB
+MERCH-0012,"Jenkins, Harrison and Golden",travel,GB
+MERCH-0013,"Mitchell, Lawrence and Cannon",entertainment,CA
+MERCH-0014,"Phillips, Alvarez and Robinson",electronics,GB
+MERCH-0015,Davidson Ltd,fashion,US
+MERCH-0016,Moore Inc,electronics,CA
+MERCH-0017,Mcconnell LLC,fashion,CA
+MERCH-0018,"Orozco, Morgan and Barnes",electronics,US
+MERCH-0019,Higgins-Miller,travel,GB
+MERCH-0020,Roberts PLC,travel,CA
+MERCH-0021,"Greene, Rodriguez and Smith",grocery,CA
+MERCH-0022,Malone-Sharp,entertainment,US
+MERCH-0023,Guzman-Walker,travel,GB
+MERCH-0024,Black and Sons,grocery,US
+MERCH-0025,Russell Group,fuel,US
+MERCH-0026,"Richardson, Flores and Marshall",restaurant,CA
+MERCH-0027,"Franklin, Garner and Johnson",grocery,GB
+MERCH-0028,Mcdonald-Rodgers,entertainment,GB
+MERCH-0029,"Anderson, Benton and Hall",restaurant,CA
+MERCH-0030,"Mccoy, Cross and Skinner",restaurant,US
+MERCH-0031,Brown Ltd,restaurant,CA
+MERCH-0032,Hunter Ltd,fashion,CA
+MERCH-0033,"Gonzalez, Brown and Dawson",grocery,GB
+MERCH-0034,Evans-Donaldson,grocery,GB
+MERCH-0035,Garcia Group,travel,US
+MERCH-0036,Murphy and Sons,fashion,GB
+MERCH-0037,Arnold-Lopez,fashion,GB
+MERCH-0038,Ward-Powell,electronics,US
+MERCH-0039,Chavez-Anderson,restaurant,CA
+MERCH-0040,Burns LLC,restaurant,GB
+MERCH-0041,Delgado Group,grocery,US
+MERCH-0042,Gross-Fleming,electronics,US
+MERCH-0043,Diaz-Hernandez,electronics,GB
+MERCH-0044,Marshall Ltd,fuel,GB
+MERCH-0045,Hale-Wheeler,fuel,CA
+MERCH-0046,Hart-Boyd,electronics,US
+MERCH-0047,Parker Inc,fashion,GB
+MERCH-0048,Medina Inc,fashion,US
+MERCH-0049,"Matthews, Barker and Reid",travel,GB
+MERCH-0050,Morse-Flores,travel,CA
