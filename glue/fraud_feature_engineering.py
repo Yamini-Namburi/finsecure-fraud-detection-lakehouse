@@ -7,9 +7,8 @@ from awsglue.job import Job
 from pyspark.sql import functions as F
 
 
-# =========================================================
 # 1. READ GLUE JOB PARAMETERS
-# =========================================================
+
 
 args = getResolvedOptions(
     sys.argv,
@@ -22,9 +21,8 @@ args = getResolvedOptions(
 )
 
 
-# =========================================================
 # 2. CREATE SPARK AND GLUE CONTEXT
-# =========================================================
+
 
 sc = SparkContext.getOrCreate()
 
@@ -33,9 +31,8 @@ glue_context = GlueContext(sc)
 spark = glue_context.spark_session
 
 
-# =========================================================
 # 3. INITIALIZE GLUE JOB
-# =========================================================
+
 
 job = Job(glue_context)
 
@@ -45,9 +42,8 @@ job.init(
 )
 
 
-# =========================================================
 # 4. READ PROCESSED TRANSACTIONS FROM GLUE DATA CATALOG
-# =========================================================
+
 
 source_dynamic_frame = (
     glue_context.create_dynamic_frame.from_catalog(
@@ -67,9 +63,9 @@ print(
 )
 
 
-# =========================================================
+
 # 5. BASIC DATA VALIDATION
-# =========================================================
+
 
 df = df.filter(
     F.col("transaction_id").isNotNull()
@@ -79,14 +75,12 @@ df = df.filter(
 )
 
 
-# =========================================================
 # 6. FRAUD FEATURE ENGINEERING
-# =========================================================
 
 
-# ---------------------------------------------------------
+
 # FEATURE 1: TRANSACTION HOUR
-# ---------------------------------------------------------
+
 #
 # Extract the hour from the transaction timestamp.
 #
@@ -107,9 +101,9 @@ df = df.withColumn(
 )
 
 
-# ---------------------------------------------------------
+
 # FEATURE 2: NIGHT TRANSACTION FLAG
-# ---------------------------------------------------------
+
 #
 # Transactions occurring between
 # 00:00 and 05:59 are flagged.
@@ -130,9 +124,8 @@ df = df.withColumn(
 )
 
 
-# ---------------------------------------------------------
 # FEATURE 3: FOREIGN TRANSACTION FLAG
-# ---------------------------------------------------------
+
 #
 # Compare:
 #
@@ -161,11 +154,9 @@ df = df.withColumn(
     ),
 )
 
-
-# ---------------------------------------------------------
 # FEATURE 4: HIGH AMOUNT FLAG
-# ---------------------------------------------------------
-#
+
+
 # Initial project threshold:
 #
 # amount > 1000
@@ -185,10 +176,8 @@ df = df.withColumn(
 )
 
 
-# ---------------------------------------------------------
 # FEATURE 5: HIGH RISK CUSTOMER FLAG
-# ---------------------------------------------------------
-#
+
 # customer_risk_tier values might contain:
 #
 # LOW
@@ -214,10 +203,10 @@ df = df.withColumn(
 )
 
 
-# ---------------------------------------------------------
+
 # FEATURE 6: ONLINE TRANSACTION FLAG
-# ---------------------------------------------------------
-#
+
+
 # Convert the existing boolean field
 # into a model-friendly integer.
 #
@@ -233,9 +222,8 @@ df = df.withColumn(
 )
 
 
-# =========================================================
 # 7. SIMPLE FRAUD RISK SCORE
-# =========================================================
+
 #
 # This is NOT the ML model.
 #
@@ -257,9 +245,9 @@ df = df.withColumn(
 )
 
 
-# =========================================================
+
 # 8. CREATE HUMAN-READABLE RISK BAND
-# =========================================================
+
 #
 # 0-1 -> LOW
 # 2-3 -> MEDIUM
@@ -282,9 +270,8 @@ df = df.withColumn(
 )
 
 
-# =========================================================
 # 9. PRINT RESULT INFORMATION
-# =========================================================
+
 
 print(
     "Feature-engineered schema:"
@@ -322,9 +309,9 @@ df.select(
 )
 
 
-# =========================================================
+
 # 10. WRITE FEATURE DATASET TO S3
-# =========================================================
+
 #
 # We deliberately use a DIFFERENT S3 location from the
 # processed transaction dataset.
@@ -352,9 +339,8 @@ df.select(
 )
 
 
-# =========================================================
 # 11. COMMIT GLUE JOB
-# =========================================================
+
 
 job.commit()
 

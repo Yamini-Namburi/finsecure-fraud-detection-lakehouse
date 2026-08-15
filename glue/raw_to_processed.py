@@ -7,10 +7,8 @@ from awsglue.context import GlueContext
 from awsglue.job import Job
 from pyspark.sql import functions as F
 
-
-# =========================================================
 # 1. READ GLUE JOB PARAMETERS
-# =========================================================
+
 
 args = getResolvedOptions(
     sys.argv,
@@ -23,9 +21,8 @@ args = getResolvedOptions(
 )
 
 
-# =========================================================
 # 2. CREATE SPARK AND GLUE CONTEXT
-# =========================================================
+
 
 sc = SparkContext()
 
@@ -34,18 +31,16 @@ glueContext = GlueContext(sc)
 spark = glueContext.spark_session
 
 
-# =========================================================
 # 3. INITIALIZE GLUE JOB
-# =========================================================
+
 
 job = Job(glueContext)
 
 job.init(args["JOB_NAME"], args)
 
 
-# =========================================================
 # 4. READ DATA FROM GLUE DATA CATALOG
-# =========================================================
+
 
 source_dynamic_frame = glueContext.create_dynamic_frame.from_catalog(
     database=args["SOURCE_DATABASE"],
@@ -60,9 +55,9 @@ df.printSchema()
 print(f"Source record count: {df.count()}")
 
 
-# =========================================================
+
 # 5. CLEAN / TRANSFORM DATA
-# =========================================================
+
 
 # Convert transaction timestamp from string to timestamp
 df = df.withColumn(
@@ -89,9 +84,9 @@ df.printSchema()
 print(f"Processed record count: {df.count()}")
 
 
-# =========================================================
+
 # 6. WRITE PROCESSED DATA TO S3 AS PARQUET
-# =========================================================
+
 
 (
     df.write
@@ -101,9 +96,8 @@ print(f"Processed record count: {df.count()}")
 )
 
 
-# =========================================================
 # 7. COMMIT GLUE JOB
-# =========================================================
+
 
 job.commit()
 
